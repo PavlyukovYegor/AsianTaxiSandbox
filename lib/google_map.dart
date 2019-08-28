@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'src/locations.dart' as locations;
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class MyGoogleMap extends StatefulWidget {
@@ -27,6 +28,18 @@ class _MyGoogleMap extends State<MyGoogleMap> {
       }
     });
   }
+
+  _saveCurrentRoute(String lastRoute) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.setString('LastScreenRoute', lastRoute);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _saveCurrentRoute("/GoogleMapScreen");
+  }
+
 
   @override
   Widget build(BuildContext context) => MaterialApp(
