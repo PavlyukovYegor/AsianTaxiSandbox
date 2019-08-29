@@ -26,7 +26,7 @@ class MyCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             IconButton(
               icon: Icon(Icons.directions_car),
               onPressed: () {
-                Scaffold.of(context).openDrawer();
+                return null;
               }
             ),
           ],
