@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:asian_taxi_sandbox/splash_screen.dart';
+import 'package:asian_taxi_sandbox/screens/splash_screen.dart';
 import 'package:asian_taxi_sandbox/google_map.dart';
 
 void main() => runApp(MyApp());

@@ -1,3 +1,4 @@
+import 'package:asian_taxi_sandbox/widgets/brandDrawer.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:asian_taxi_sandbox/widgets/customBottomBar.dart';
@@ -47,7 +48,7 @@ class _MyGoogleMap extends State<MyGoogleMap> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        drawer: Drawer(),
+        drawer: BrandDrawer(),
         appBar: MyCustomAppBar(height: 50),
         body: GoogleMap(
           onMapCreated: _onMapCreated,
