@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:asian_taxi_sandbox/widgets/customBottomBar.dart';
+import 'package:asian_taxi_sandbox/widgets/custopAppBar.dart';
 import 'src/locations.dart' as locations;
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:asian_taxi_sandbox/widgets/brandCard.dart';
 
 class MyGoogleMap extends StatefulWidget {
   @override
@@ -11,6 +13,7 @@ class MyGoogleMap extends StatefulWidget {
 
 class _MyGoogleMap extends State<MyGoogleMap> {
   final Map<String, Marker> _markers = {};
+
   Future<void> _onMapCreated(GoogleMapController controller) async {
     final googleOffices = await locations.getGoogleOffices();
     setState(() {
@@ -40,22 +43,22 @@ class _MyGoogleMap extends State<MyGoogleMap> {
     _saveCurrentRoute("/GoogleMapScreen");
   }
 
-
   @override
-  Widget build(BuildContext context) => MaterialApp(
-    home: Scaffold(
-      appBar: AppBar(
-        title: const Text('Google Office Locations'),
-        backgroundColor: Colors.green[700],
-      ),
-      body: GoogleMap(
-        onMapCreated: _onMapCreated,
-        initialCameraPosition: CameraPosition(
-          target: const LatLng(0, 0),
-          zoom: 2,
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        drawer: Drawer(),
+        appBar: MyCustomAppBar(height: 50),
+        body: GoogleMap(
+          onMapCreated: _onMapCreated,
+          initialCameraPosition: CameraPosition(
+            target: const LatLng(0, 0),
+            zoom: 2,
+          ),
+          markers: _markers.values.toSet(),
         ),
-        markers: _markers.values.toSet(),
+        bottomNavigationBar: MyCustomBottomBar(height: 50),
       ),
-    ),
-  );
+    );
+  }
 }
